@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect
 from .forms import RegistrationForm, LoginForm
 from .models import CustomerSeller
 from django.contrib import messages
+import uuid
 
 
 def register(request):
@@ -12,12 +13,22 @@ def register(request):
 
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
+        email = request.POST['email']
         
-        if form.is_valid():
-            form.save()
-            return redirect('register_login_login')
-        else:
-            messages.add_message(request, messages.INFO, 'Registration failed, please insert unique email and a number password.')
+        try:
+            if form.is_valid():
+                form.save()
+                
+                user = CustomerSeller.objects.get(email=email)
+                user.user_uuid = uuid.uuid1()
+                user.save()
+                
+                return redirect('register_login_login')
+            else:
+                messages.add_message(request, messages.INFO, 'Registration failed, please insert unique email and a number password.')
+        except:
+                messages.add_message(request, messages.INFO, 'Registration failed, please try again')
+
 
 
     return render(request, 'register_login/register.html', context)

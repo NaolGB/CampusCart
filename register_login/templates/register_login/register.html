@@ -1,0 +1,18 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<div>
+    {% if messages %}
+        {% for message in messages %}
+            {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
+        {% endfor %}
+
+    {% endif %}
+    
+    <form action="" method='post'>
+        {% csrf_token %}
+        {{registeration_form}}
+        <input type="submit" value="Register" />
+    </form>
+</div>
+{% endblock content %}

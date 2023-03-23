@@ -1,5 +1,5 @@
 from django.db import models
-from customer.models import CustomerSeller
+from register_login.models import CustomerSeller
 
 class Items(models.Model):
     name = models.CharField(max_length=256, null=False)

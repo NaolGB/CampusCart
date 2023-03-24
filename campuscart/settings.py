@@ -27,7 +27,7 @@ SECRET_KEY = secrets.DJANGO_SECRET_KEY
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["env-campuscart.eba-gtwdq2hi.us-west-2.elasticbeanstalk.com", "127.0.0.1"]
 
 
 # Application definition

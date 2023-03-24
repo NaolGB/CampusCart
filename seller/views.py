@@ -8,7 +8,7 @@ def home(request):
     user = CustomerSeller.objects.get(user_uuid=request.session['member_id'])
 
     context = {
-        'items': Items.objects.filter(seller=user)
+        'items': Items.objects.filter(seller=user, sold=False)
     }
 
     return render(request, 'seller/home.html', context)

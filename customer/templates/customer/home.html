@@ -1,5 +1,12 @@
 {% extends 'main.html' %}
 
 {% block content %}
-hello from template home
+    <div>
+        {% for item in items %}
+            <div>
+                {{item.name}}
+                <a href="#">Add to cart</a>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock content %}
